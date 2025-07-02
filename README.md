@@ -3,7 +3,7 @@
 **Monitor, manage, and maximize service.**  
 A powerful and intuitive Restaurant Management Web App for owners and managers to streamline operations and deliver exceptional dining experiences.
 
-![ServeSense Banner](https://your-image-link.com/banner.png) <!-- Optional: Replace with your banner image or remove -->
+![ServeSense Banner](https://ibb.co/jv8qMTjR) <!-- Optional: Replace with your banner image or remove -->
 
 ---
 
@@ -48,7 +48,7 @@ ServeSense offers a centralized dashboard to manage all your restaurant operatio
 
 | Frontend     | Backend     | Database      | Others         |
 |--------------|-------------|----------------|----------------|
-| HTML, CSS, JavaScript     | Django | MySQL | REST APIs, Chart.js, TailwindCSS |
+| HTML, CSS, JavaScript     | Django | MySQL |  |
 
 ---
 
