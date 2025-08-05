@@ -3,8 +3,6 @@
 **Monitor, manage, and maximize service.**  
 A powerful and intuitive Restaurant Management Web App for owners and managers to streamline operations and deliver exceptional dining experiences.
 
-![ServeSense Banner](https://ibb.co/jv8qMTjR) <!-- Optional: Replace with your banner image or remove -->
-
 ---
 
 ## 🚀 Features
