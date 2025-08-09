@@ -3,6 +3,12 @@ from django.db import models
 # Create your models here.
 # Create a Reservation, Customer, Table
 
+"""
+    Need to Create Table first. 
+    Then customer 
+    Then reservation
+    
+"""
 
 # ID generated automatically
 class Customer(models.Model):
@@ -11,7 +17,7 @@ class Customer(models.Model):
     phoneNumber = models.CharField(max_length=20)
     
     def __str__(self):
-        return self.lastName + ", " + self.PhoneNumber
+        return self.lastName + ", " + self.phoneNumber
     
     
 class Table(models.Model):
@@ -30,7 +36,7 @@ class Reservation(models.Model):
     table = models.ForeignKey(Table, on_delete=models.CASCADE)
     numberOfGuests = models.IntegerField()
     reservationTime = models.TimeField()
-    reservationDate = models.DateField(auto_now_add=True)
+    reservationDate = models.DateField(auto_now_add=True) # add date automatically when reservation is created
     
     def __str__(self):
         return f"Reservation for {self.customer} at {self.reservationDate} for Table {self.table}"
