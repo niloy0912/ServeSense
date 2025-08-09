@@ -1,3 +1,36 @@
 from django.db import models
 
 # Create your models here.
+# Create a Reservation, Customer, Table
+
+
+# ID generated automatically
+class Customer(models.Model):
+    firstName = models.CharField(max_length=50)
+    lastName = models.CharField(max_length=50)
+    phoneNumber = models.CharField(max_length=20)
+    
+    def __str__(self):
+        return self.lastName + ", " + self.PhoneNumber
+    
+    
+class Table(models.Model):
+    # Meaningful table Number such as 3B for 3rd table in Balcony etc..
+    tableNumber = models.CharField(unique=True, max_length=10)
+    capacity = models.IntegerField()
+    status = models.CharField(max_length=20, default='available')  # e.g., available, reserved, occupied
+    
+    
+    def __str__(self):
+        return f"Table {self.tableNumber} - Seats: {self.capacity} - Status: {self.status}"
+    
+    
+class Reservation(models.Model):
+    customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
+    table = models.ForeignKey(Table, on_delete=models.CASCADE)
+    numberOfGuests = models.IntegerField()
+    reservationTime = models.TimeField()
+    reservationDate = models.DateField(auto_now_add=True)
+    
+    def __str__(self):
+        return f"Reservation for {self.customer} at {self.reservationDate} for Table {self.table}"
