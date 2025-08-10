@@ -36,7 +36,13 @@ class Reservation(models.Model):
     table = models.ForeignKey(Table, on_delete=models.CASCADE)
     numberOfGuests = models.IntegerField()
     reservationTime = models.TimeField()
-    reservationDate = models.DateField(auto_now_add=True) # add date automatically when reservation is created
+    reservationDate = models.DateField() # add date automatically when reservation is created
+    STATUS_CHOICES = (
+        ('Pending', 'Pending'),
+        ('Confirmed', 'Confirmed'),
+        ('Cancelled', 'Cancelled'),
+    )
+    status = models.CharField(max_length=10, choices=STATUS_CHOICES, default='Pending')
     
     def __str__(self):
         return f"Reservation for {self.customer} at {self.reservationDate} for Table {self.table}"
