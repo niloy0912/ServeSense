@@ -6,6 +6,8 @@ from .forms import ReservationForm, EditReservationForm
 from .models import Customer, Table, Reservation
 
 """
+Reservations App - Views Documentation
+-----------------------------   
 This views.py file handles all the request/response logic for the reservations application.
 It contains the following functionalities:
 

@@ -28,6 +28,8 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+# override basic User model with custom User
+AUTH_USER_MODEL = 'staff.User'
 
 # Application definition
 
@@ -41,6 +43,7 @@ INSTALLED_APPS = [
     
     # my apps
     "reservations",
+    "staff",
 ]
 
 MIDDLEWARE = [
