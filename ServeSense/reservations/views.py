@@ -5,48 +5,24 @@ from django.contrib import messages
 from .forms import ReservationForm, EditReservationForm
 from .models import Customer, Table, Reservation
 
-"""
-Reservations App - Views Documentation
------------------------------   
-This views.py file handles all the request/response logic for the reservations application.
-It contains the following functionalities:
-
-- home: Renders the main homepage of the application.
-
-- reservation_list: Displays a complete list of all reservations, ordered by date and time.
-  This view fetches all Reservation objects from the database and passes them to the 
-  'reservation_list.html' template for rendering.
-
-- create_reservation: Manages the creation of new reservations. 
-  On a GET request, it displays an empty reservation form. 
-  On a POST request, it validates the submitted data. If valid, it first checks for an 
-  existing customer by phone number or creates a new one. It then finds an available table 
-  that meets the capacity and time requirements. If a table is found, it creates the 
-  reservation and redirects to the reservation list. If no table is available, it displays 
-  an error message on the form.
-
-- edit_reservation: Handles the modification of an existing reservation. 
-  It takes a reservation_id from the URL to fetch a specific reservation. 
-  On a GET request, it displays a form pre-populated with that reservation's data. 
-  On a POST request, it validates and saves the updated information, then redirects to the 
-  reservation list.
-
-- delete_reservation: Manages the deletion of a specific reservation. 
-  On a GET request, it displays a confirmation page to prevent accidental deletion. 
-  On a POST request (after the user confirms), it deletes the reservation record from the 
-  database and redirects to the reservation list.
-  
-- accept_reservation: Handles the business logic for confirming a reservation.
-  It takes a reservation_id, finds the reservation, updates its status to 'Confirmed',
-  finds the associated table, updates its status to 'reserved', and then redirects
-  the user back to the reservation list with a success message.
-"""
-
 def home(request):
+    """Renders the main homepage of the application."""
     return render(request, 'index.html')
 
 
 def create_reservation(request):
+    """
+    Handles the logic for the "Add Reservation" page.
+
+    If the user is just visiting the page (a GET request), it shows a blank
+    reservation form. If the user submits the form (a POST request), it first
+    validates the data. If valid, it will either find an existing customer by
+    their phone number or create a new one. It then searches for a table that
+    is big enough and not already booked at that specific date and time. If an
+    available table is found, the reservation is created, a success message is
+    shown, and the user is redirected to the main reservation list. If no table
+    is free, it shows an error on the form.
+    """
     if request.method == 'POST':
         form = ReservationForm(request.POST)
         if form.is_valid():
@@ -96,6 +72,15 @@ def create_reservation(request):
 
 
 def edit_reservation(request, reservation_id):
+    """
+    Manages the "Edit Reservation" page.
+    
+    It finds the specific reservation to edit using the 'reservation_id'
+    from the URL. If the user is just visiting the page, it displays the
+    edit form pre-filled with that reservation's current details. If the
+    user submits the form with changes, it validates the data, saves the
+    updates, and redirects back to the main reservation list.
+    """
     reservation = get_object_or_404(Reservation, id=reservation_id)
     if request.method == 'POST':
         form = EditReservationForm(request.POST, instance=reservation)
@@ -110,6 +95,14 @@ def edit_reservation(request, reservation_id):
 
 
 def delete_reservation(request, reservation_id):
+    """
+    Handles the deletion of a specific reservation.
+
+    On a GET request, it shows a confirmation page to make sure the user
+    really wants to delete the reservation. If the user confirms by submitting
+    the form (a POST request), the reservation record is deleted from the
+    database, and the user is redirected back to the reservation list.
+    """
     reservation = get_object_or_404(Reservation, id=reservation_id)
     if request.method == 'POST':
         reservation.delete()
@@ -120,6 +113,14 @@ def delete_reservation(request, reservation_id):
 
 
 def accept_reservation(request, reservation_id):
+    """
+    Handles the business logic for confirming a reservation.
+
+    This view is triggered when a manager "accepts" a reservation. It finds
+    the specific reservation, changes its status to 'Confirmed', and then finds
+    the associated table and updates its status to 'reserved'. Finally, it
+    redirects the manager back to the reservation list with a success message.
+    """
     reservation = get_object_or_404(Reservation, id=reservation_id)
     
     reservation.status = 'Confirmed'
@@ -135,6 +136,13 @@ def accept_reservation(request, reservation_id):
 
 
 def reservation_list(request):
+    """
+    Displays a complete list of all reservations.
+
+    This view fetches every Reservation object from the database, ordering them
+    by date and then by time so the earliest ones appear first. It then passes
+    this list to the 'reservation_list.html' template to be displayed in a table.
+    """
     all_reservations = Reservation.objects.order_by('reservationDate', 'reservationTime')
     context = {
         'reservations': all_reservations

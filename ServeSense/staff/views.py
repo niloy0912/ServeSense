@@ -3,56 +3,14 @@ from .models import User, Attendance # Import our custom User model
 from .forms import EditStaffForm, AddStaffForm
 from django.utils import timezone
 
-"""
-Staff App - Views Documentation
------------------------------
-
-staff_list(request):
-This function is responsible for the main staff overview page. 
-Its primary job is to fetch every user object from the database using User.objects.all(). 
-It then packages this list of staff members into a context dictionary and passes it 
-to the 'staff_list.html' template, which handles the actual display.
-
-edit_staff(request, staff_id):
-This view manages the process of updating a staff member's profile.
-It takes a 'staff_id' from the URL to identify which user to edit, using 
-get_object_or_404 to safely retrieve them. If the request is a POST, it means 
-a form was submitted, so it validates the data using the EditStaffForm and saves 
-the changes. If it's a GET request, it simply displays the same form, but 
-pre-filled with the staff member's current information.
-
-add_staff(request):
-This view handles the creation of a new staff member account. It uses the 
-custom AddStaffForm, which is based on Django's UserCreationForm to ensure 
-passwords are handled securely. On a GET request, it shows a blank form. 
-On a POST request, it validates the submitted data and, if valid, saves the new 
-user to the database before redirecting the manager back to the main staff list.
-
-clock_in(request, staff_id):
-This is a simple action-oriented view that handles when a staff member starts their shift.
-It finds the specific user by their ID, sets their 'is_on_duty' status to True,
-and saves the change. Critically, it also creates a new record in the Attendance table,
-linking it to the staff member and automatically timestamping the clock-in time.
-It does not render a template; it simply redirects back to the staff list.
-
-clock_out(request, staff_id):
-This view handles the end of a staff member's shift. It finds the user and sets
-their 'is_on_duty' status to False. It then attempts to find the most recent
-'Attendance' record for that user that does not yet have a clock-out time. 
-If it finds one, it updates the 'clock_out_time' to the current time, effectively
-ending the shift log. The 'try...except' block safely handles cases where an open
-shift might not be found, preventing the application from crashing.
-
-attendance_log(request):
-This function is built to display the complete history of all staff shifts.
-It queries the Attendance model to get every single record. It orders the results
-by 'clock_in_time' in descending order ('-clock_in_time') so that the most recent
-shifts appear at the top of the list. It then passes this list of logs to the 
-'attendance_log.html' template for display.
-"""
-
 
 def staff_list(request):
+    """
+    This function is responsible for the main staff overview page. 
+    Its primary job is to fetch every user object from the database using User.objects.all(). 
+    It then packages this list of staff members into a context dictionary and passes it 
+    to the 'staff_list.html' template, which handles the actual display.
+    """
     all_staff = User.objects.all() # fetch all staff
     
     context = {
@@ -62,6 +20,14 @@ def staff_list(request):
 
 
 def edit_staff(request, staff_id):
+    """
+    This view manages the process of updating a staff member's profile.
+    It takes a 'staff_id' from the URL to identify which user to edit, using 
+    get_object_or_404 to safely retrieve them. If the request is a POST, it means 
+    a form was submitted, so it validates the data using the EditStaffForm and saves 
+    the changes. If it's a GET request, it simply displays the same form, but 
+    pre-filled with the staff member's current information.
+    """
     staff_member = get_object_or_404(User, id=staff_id)
     # Check if the manager is submitting the form (POST) or just visiting the page (GET)
     if request.method == 'POST':
@@ -81,6 +47,13 @@ def edit_staff(request, staff_id):
 
 
 def add_staff(request):
+    """
+    This view handles the creation of a new staff member account. It uses the 
+    custom AddStaffForm, which is based on Django's UserCreationForm to ensure 
+    passwords are handled securely. On a GET request, it shows a blank form. 
+    On a POST request, it validates the submitted data and, if valid, saves the new 
+    user to the database before redirecting the manager back to the main staff list.
+    """
     if request.method == 'POST':
         form = AddStaffForm(request.POST)
         if form.is_valid():
@@ -105,6 +78,13 @@ def add_staff(request):
 
 
 def clock_in(request, staff_id):
+    """
+    This is a simple action-oriented view that handles when a staff member starts their shift.
+    It finds the specific user by their ID, sets their 'is_on_duty' status to True,
+    and saves the change. Critically, it also creates a new record in the Attendance table,
+    linking it to the staff member and automatically timestamping the clock-in time.
+    It does not render a template; it simply redirects back to the staff list.
+    """
     staff_member = get_object_or_404(User, id=staff_id)
     staff_member.is_on_duty = True
     staff_member.save()
@@ -114,6 +94,14 @@ def clock_in(request, staff_id):
 
 
 def clock_out(request, staff_id):
+    """
+    This view handles the end of a staff member's shift. It finds the user and sets
+    their 'is_on_duty' status to False. It then attempts to find the most recent
+    'Attendance' record for that user that does not yet have a clock-out time. 
+    If it finds one, it updates the 'clock_out_time' to the current time, effectively
+    ending the shift log. The 'try...except' block safely handles cases where an open
+    shift might not be found, preventing the application from crashing.
+    """
     staff_member = get_object_or_404(User, id=staff_id)
     staff_member.is_on_duty = False
     staff_member.save()
@@ -130,6 +118,13 @@ def clock_out(request, staff_id):
 
 
 def attendance_log(request):
+    """
+    This function is built to display the complete history of all staff shifts.
+    It queries the Attendance model to get every single record. It orders the results
+    by 'clock_in_time' in descending order ('-clock_in_time') so that the most recent
+    shifts appear at the top of the list. It then passes this list of logs to the 
+    'attendance_log.html' template for display.
+    """
     all_logs = Attendance.objects.all().order_by('-clock_in_time')
     context = {
         'logs': all_logs
