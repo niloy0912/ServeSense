@@ -1,6 +1,7 @@
 from django.test import TestCase
 from django.urls import reverse
-from .models import MenuItem  # assuming you have this model
+from .models import MenuItem  
+from decimal import Decimal
 
 class MenuItemModelTest(TestCase):
     def setUp(self):
@@ -16,6 +17,6 @@ class MenuViewsTest(TestCase):
         MenuItem.objects.create(name="Burger", price=5.99, available=True)
 
     def test_menu_list_view(self):
-        response = self.client.get(reverse('menu_list'))  # make sure 'menu_list' is your URL name
+        response = self.client.get(reverse('menu')) 
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, "Burger")
