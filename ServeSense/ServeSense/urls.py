@@ -23,6 +23,7 @@ urlpatterns = [
     path("admin/", admin.site.urls),  # admin page view
     path("reservations/", include("reservations.urls")),  # Reservations app URLs
     path('staff/', include('staff.urls')),
+    
     path("", views.home, name="home"),  # Home page view for creating reservations
     
     
