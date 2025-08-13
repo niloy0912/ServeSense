@@ -26,7 +26,7 @@ def menu_list(request):
     else:
         form = MenuItemForm()
 
-    return render(request, 'menu/menu_list.html', {'menu_items': menu_items, 'form': form})
+    return render(request, 'menu_list.html', {'menu_items': menu_items, 'form': form})
 
 
 def menu_edit(request, pk):
@@ -52,7 +52,7 @@ def menu_edit(request, pk):
             return redirect('menu_list')
     else:
         form = MenuItemForm(instance=item)
-    return render(request, 'menu/menu_edit.html', {'form': form})
+    return render(request, 'menu_edit.html', {'form': form})
 
 
 def menu_delete(request, pk):

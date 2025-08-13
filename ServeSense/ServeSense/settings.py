@@ -44,6 +44,10 @@ INSTALLED_APPS = [
     # my apps
     "reservations",
     "staff",
+    
+    #tamjid
+    "tables",
+    "menu",
 ]
 
 MIDDLEWARE = [

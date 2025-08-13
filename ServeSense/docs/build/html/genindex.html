@@ -43,6 +43,8 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="reservations.html">Reservations App</a></li>
 <li class="toctree-l1"><a class="reference internal" href="staff.html">Staff App</a></li>
+<li class="toctree-l1"><a class="reference internal" href="menu.html">Menu App</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tables.html">Reservations App</a></li>
 </ul>
 
         </div>
@@ -73,6 +75,7 @@
 
 <div class="genindex-jumpbox">
  <a href="#A"><strong>A</strong></a>
+ | <a href="#B"><strong>B</strong></a>
  | <a href="#C"><strong>C</strong></a>
  | <a href="#D"><strong>D</strong></a>
  | <a href="#E"><strong>E</strong></a>
@@ -105,6 +108,16 @@
       <li><a href="staff.html#staff.models.Attendance.MultipleObjectsReturned">Attendance.MultipleObjectsReturned</a>
 </li>
       <li><a href="staff.html#staff.views.attendance_log">attendance_log() (in module staff.views)</a>
+</li>
+      <li><a href="menu.html#menu.models.MenuItem.available">available (menu.models.MenuItem attribute)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="B">B</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="menu.html#menu.models.MenuItem.best_seller">best_seller (menu.models.MenuItem attribute)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -193,9 +206,54 @@
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
       <li>
+    menu.models
+
+      <ul>
+        <li><a href="menu.html#module-menu.models">module</a>
+</li>
+      </ul></li>
+      <li>
+    menu.tests
+
+      <ul>
+        <li><a href="menu.html#module-menu.tests">module</a>
+</li>
+      </ul></li>
+      <li>
+    menu.views
+
+      <ul>
+        <li><a href="menu.html#module-menu.views">module</a>
+</li>
+      </ul></li>
+      <li><a href="menu.html#menu.views.menu_delete">menu_delete() (in module menu.views)</a>
+</li>
+      <li><a href="menu.html#menu.views.menu_edit">menu_edit() (in module menu.views)</a>
+</li>
+      <li><a href="menu.html#menu.views.menu_list">menu_list() (in module menu.views)</a>
+</li>
+      <li><a href="menu.html#menu.models.MenuItem">MenuItem (class in menu.models)</a>
+</li>
+      <li><a href="menu.html#menu.models.MenuItem.DoesNotExist">MenuItem.DoesNotExist</a>
+</li>
+      <li><a href="menu.html#menu.models.MenuItem.MultipleObjectsReturned">MenuItem.MultipleObjectsReturned</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="menu.html#menu.tests.MenuItemModelTest">MenuItemModelTest (class in menu.tests)</a>
+</li>
+      <li><a href="menu.html#menu.tests.MenuViewsTest">MenuViewsTest (class in menu.tests)</a>
+</li>
+      <li>
     module
 
       <ul>
+        <li><a href="menu.html#module-menu.models">menu.models</a>
+</li>
+        <li><a href="menu.html#module-menu.tests">menu.tests</a>
+</li>
+        <li><a href="menu.html#module-menu.views">menu.views</a>
+</li>
         <li><a href="reservations.html#module-reservations.models">reservations.models</a>
 </li>
         <li><a href="reservations.html#module-reservations.tests">reservations.tests</a>
@@ -215,6 +273,10 @@
 <h2 id="N">N</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="menu.html#menu.models.MenuItem.name">name (menu.models.MenuItem attribute)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="reservations.html#reservations.models.Reservation.numberOfGuests">numberOfGuests (reservations.models.Reservation attribute)</a>
 </li>
   </ul></td>
@@ -228,6 +290,8 @@
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="reservations.html#reservations.models.Customer.phoneNumber">phoneNumber (reservations.models.Customer attribute)</a>
+</li>
+      <li><a href="menu.html#menu.models.MenuItem.price">price (menu.models.MenuItem attribute)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -280,9 +344,13 @@
 <h2 id="S">S</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="reservations.html#reservations.tests.ReservationTests.setUp">setUp() (reservations.tests.ReservationTests method)</a>
+      <li><a href="menu.html#menu.tests.MenuItemModelTest.setUp">setUp() (menu.tests.MenuItemModelTest method)</a>
 
       <ul>
+        <li><a href="menu.html#menu.tests.MenuViewsTest.setUp">(menu.tests.MenuViewsTest method)</a>
+</li>
+        <li><a href="reservations.html#reservations.tests.ReservationTests.setUp">(reservations.tests.ReservationTests method)</a>
+</li>
         <li><a href="staff.html#staff.tests.StaffTests.setUp">(staff.tests.StaffTests method)</a>
 </li>
       </ul></li>
@@ -339,10 +407,10 @@
 </li>
       <li><a href="reservations.html#reservations.tests.ReservationTests.test_accept_reservation_works">test_accept_reservation_works() (reservations.tests.ReservationTests method)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="staff.html#staff.tests.StaffTests.test_add_new_staff_member_works">test_add_new_staff_member_works() (staff.tests.StaffTests method)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="staff.html#staff.tests.StaffTests.test_clock_in_and_out_works">test_clock_in_and_out_works() (staff.tests.StaffTests method)</a>
 </li>
       <li><a href="reservations.html#reservations.tests.ReservationTests.test_create_reservation_works">test_create_reservation_works() (reservations.tests.ReservationTests method)</a>
@@ -352,6 +420,10 @@
       <li><a href="reservations.html#reservations.tests.ReservationTests.test_edit_reservation_works">test_edit_reservation_works() (reservations.tests.ReservationTests method)</a>
 </li>
       <li><a href="staff.html#staff.tests.StaffTests.test_edit_staff_role_works">test_edit_staff_role_works() (staff.tests.StaffTests method)</a>
+</li>
+      <li><a href="menu.html#menu.tests.MenuItemModelTest.test_menu_item_creation">test_menu_item_creation() (menu.tests.MenuItemModelTest method)</a>
+</li>
+      <li><a href="menu.html#menu.tests.MenuViewsTest.test_menu_list_view">test_menu_list_view() (menu.tests.MenuViewsTest method)</a>
 </li>
       <li><a href="staff.html#staff.tests.StaffTests.test_staff_list_page_works">test_staff_list_page_works() (staff.tests.StaffTests method)</a>
 </li>

@@ -25,4 +25,8 @@ urlpatterns = [
     path('staff/', include('staff.urls')),
     path("", views.home, name="home"),  # Home page view for creating reservations
     
+    
+    # tamjid
+    path('tables/', include('tables.urls')),
+    path('menu/', include('menu.urls')),
 ]

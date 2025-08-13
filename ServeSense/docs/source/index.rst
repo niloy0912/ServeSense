@@ -15,4 +15,6 @@ This documentation provides an overview of the ServeSense project, including its
 
    reservations
    staff
+   menu
+   tables
 

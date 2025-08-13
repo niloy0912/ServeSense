@@ -26,7 +26,7 @@ def table_list(request):
     else:
         form = TableForm()
 
-    return render(request, 'tables/table_list.html', {'tables': tables, 'form': form})
+    return render(request, 'table_list.html', {'tables': tables, 'form': form})
 
 
 def table_edit(request, pk):
@@ -53,7 +53,7 @@ def table_edit(request, pk):
     else:
         form = TableForm(instance=table)
 
-    return render(request, 'tables/table_edit.html', {'form': form})
+    return render(request, 'table_edit.html', {'form': form})
 
 
 def table_delete(request, pk):
